@@ -47,8 +47,8 @@ const flags = {
     mode: MODES[0],
     // noise: false,
     friction: false,
-    inputDelay: false,
-    inputConstraint: false,
+    inputDelay: true,
+    inputConstraint: true,
     I_PD: false,
     REF_AUTO: false,
 };
@@ -504,7 +504,7 @@ let createGUI = function () {
             gain1 = value;
         })
         .name("k1 (kP)");
-    servo.add(text, "gain2", 0, 1.0)
+    servo.add(text, "gain2", -0.01, 1.0)
         .step(0.000001)
         .onChange(function (value) {
             gain2 = value;
@@ -524,13 +524,13 @@ let createGUI = function () {
         .name("ref");
 
     let fb = gui.addFolder("StateFeedback");
-    fb.add(text, "gain1", 0, 1.0)
+    fb.add(text, "gain1", -0.1, 1.0)
         .step(0.00001)
         .onChange(function (value) {
             gain1 = value;
         })
         .name("k1");
-    fb.add(text, "gain2", 0, 1.0)
+    fb.add(text, "gain2", -0.1, 1.0)
         .step(0.000001)
         .onChange(function (value) {
             gain2 = value;
